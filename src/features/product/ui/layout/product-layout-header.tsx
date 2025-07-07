@@ -1,6 +1,8 @@
 import { useElementVisibility } from "@/shared/lib/hooks/use-element-visibility";
 import { Tabs } from "@/shared/ui/kit/tabs";
-import { productTabsData, type ProductTabId } from "../model/constants";
+import type { ProductTabId, productTabsData } from "../../model/constants";
+import { useLayoutProductHeader } from "../../model/layout-context/use-layout-product-header";
+import { useEffect } from "react";
 
 /**
  * Фиксированный заголовок с навигационными табами для страницы товара.
@@ -22,7 +24,6 @@ import { productTabsData, type ProductTabId } from "../model/constants";
  * @returns {JSX.Element} Компонент заголовка с табами.
  */
 
-
 export type TabItem = typeof productTabsData;
 
 interface Props {
@@ -33,14 +34,20 @@ interface Props {
 
 export function ProductLayoutHeader({ activeTab, onTabClick, tabs }: Props) {
   const { ref, isTopHidden } = useElementVisibility();
+  const { headerHeight } = useLayoutProductHeader();
+
+  useEffect(() => {
+    console.log(headerHeight);
+  }, [headerHeight]);
 
   return (
     <>
       <div ref={ref} className="opacity-0 pointer-events-none" />
 
       <div
-        className={`sticky -top-[1px] z-50 w-full h-20 grid grid-cols-[1fr_1.2fr_1.2fr_1fr_1fr_1fr]
+        className={`sticky -top-[1px] z-50 w-full grid grid-cols-[1fr_1.2fr_1.2fr_1fr_1fr_1fr]
           font-sans text-md transition-shadow ${isTopHidden ? "shadow" : ""}`}
+          style={{ height: `${headerHeight}px` }}
       >
         {tabs.map((tab, index) => {
           return (

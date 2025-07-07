@@ -5,6 +5,7 @@ import { ROUTES } from "@/shared/model/routes";
 import { ProtectedRoute } from "./protected-route";
 import AppHeader from "@/features/header";
 import { protectedLoader } from "./protected-loader";
+import { PurchaseBlock } from "@/shared/ui/blocks/purchase-block ";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
           {
             path: ROUTES.PRODUCT,
             lazy: () => import("@/features/product/product.page"),
+          },
+          {
+            element: <PurchaseBlock discount={25} price={100} />,
+            path: 'test',
           }
         ],
       },

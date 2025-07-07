@@ -7,7 +7,7 @@ type UseProductsListParams = {
   limit?: number;
 };
 
-export function UseProductsList({ limit }: UseProductsListParams) {
+export function useProductsList({ limit }: UseProductsListParams) {
   const {fetchNextPage, data, isFetchingNextPage, isPending, hasNextPage} = publicRqClient.useInfiniteQuery(
     "get",
     "/products",

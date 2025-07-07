@@ -1,4 +1,4 @@
-import { UseProductsList } from "./model/use-products-list";
+import { useProductsList } from "./model/use-products-list";
 import { ProductsListCard } from "./ui/products-list-card";
 import {
   ProductslistLayout,
@@ -6,7 +6,7 @@ import {
 } from "./ui/products-list-layout";
 
 function ProductsListPage() {
-  const productsQuery = UseProductsList({ limit: 10 });
+  const productsQuery = useProductsList({ limit: 10 });
 
   return (
     <div>

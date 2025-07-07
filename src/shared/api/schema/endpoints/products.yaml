@@ -9,6 +9,7 @@ schemas:
       - discount
       - totalReviews
       - totalStars
+      - stockQuantity
       - imageUrl
       - category
       - createdAt
@@ -28,6 +29,8 @@ schemas:
       totalReviews:
         type: number
       totalStars:
+        type: number
+      stockQuantity:
         type: number
       imageUrl:
         type: array

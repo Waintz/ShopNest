@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
-import { useProduct } from "./model/use-product";
-import { ProductLayout } from "./ui/product-layout";
+import { useProduct } from "./api/use-product";
+import { ProductLayout } from "./ui/layout/product-layout";
 import { GalleryCarousel } from "@/shared/ui/kit/carousel";
-import { ProductLayoutHeader } from "./ui/product-layout-header";
-import { ProductLayoutAbout } from "./ui/product-layout-about";
-import ProductInfo from "./ui/product-info";
+import { ProductLayoutAbout } from "./ui/layout/product-layout-about";
+import ProductInfo from "./ui/section/product-info-section";
 import { useProductSectionsNavigation } from "./model/use-product-sections-navigation";
 import { productTabsData } from "./model/constants";
+import ProductBuySection from "./ui/section/product-buy-section";
+import { ProductLayoutHeader } from "./ui/layout/product-layout-header";
 
 function ProductPage() {
   const params = useParams<{ productId: string }>();
@@ -30,11 +31,19 @@ function ProductPage() {
         <ProductLayoutAbout
           renderCarousel={() => {
             return (
-              data?.imageUrl && <GalleryCarousel images={data?.imageUrl} />
+              data?.imageUrl && (
+                <GalleryCarousel
+                  autoPlayOpts={{ autoScroll: true, delayScroll: 15000 }}
+                  images={data?.imageUrl}
+                />
+              )
             );
           }}
           renderProductInfo={() => {
-            return <ProductInfo productData={data} />;
+            return data && <ProductInfo productData={data} />;
+          }}
+          renderProductBuySection={() => {
+            return data && <ProductBuySection price={data.price} discount={data.discount}   />
           }}
         />
       </section>

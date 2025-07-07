@@ -20,6 +20,7 @@ const generateProducts: ApiSchemas["Product"][] = Array.from(
       discount: Math.floor(Math.random() * 101),
       totalReviews: Math.floor(Math.random() * 1001),
       totalStars: Math.floor(Math.random() * 50 + 1) / 10,
+      stockQuantity: Math.floor(Math.random() * 101),
       category: "Category A",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
